@@ -1,0 +1,336 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080" font-family="Inter, 'Segoe UI', 'DejaVu Sans', Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#232F3E"/>
+    </marker>
+    <marker id="arrO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E7157B"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7D8998"/>
+    </marker>
+    <style>
+      .t  { font-size: 15px; font-weight: 700; fill: #232F3E; }
+      .s  { font-size: 12px; fill: #3B4754; }
+      .xs { font-size: 11px; fill: #5A6672; }
+      .lbl{ font-size: 13px; font-weight: 700; }
+      .node { stroke-width: 1.6; rx: 10; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1080" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="40" y="44" font-size="24" font-weight="800" fill="#232F3E">Terraform IaC DevOps — AWS CodePipeline → Infrastructure multi-environnement (dev / stag)</text>
+
+  <!-- ================= CI/CD PANEL ================= -->
+  <rect x="40" y="66" width="1520" height="226" rx="14" fill="#F5F7FA" stroke="#B8C2CC" stroke-width="1.5"/>
+  <text x="58" y="90" class="lbl" fill="#232F3E">① Pipeline CI/CD — Infrastructure as Code</text>
+
+  <!-- Developer -->
+  <rect x="62" y="132" width="130" height="96" rx="10" fill="#FFFFFF" stroke="#232F3E" stroke-width="1.6"/>
+  <circle cx="127" cy="158" r="12" fill="#232F3E"/>
+  <path d="M105,192 q22,-26 44,0" fill="#232F3E"/>
+  <text x="127" y="214" text-anchor="middle" class="t">Développeur</text>
+
+  <!-- GitHub -->
+  <rect x="228" y="132" width="158" height="96" rx="10" fill="#FFFFFF" stroke="#24292F" stroke-width="1.6"/>
+  <rect x="228" y="132" width="158" height="26" rx="10" fill="#24292F"/>
+  <rect x="228" y="148" width="158" height="10" fill="#24292F"/>
+  <text x="307" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">GitHub</text>
+  <text x="307" y="180" text-anchor="middle" class="s">terraform-manifests/</text>
+  <text x="307" y="198" text-anchor="middle" class="s">buildspec-dev.yml</text>
+  <text x="307" y="215" text-anchor="middle" class="s">buildspec-stag.yml</text>
+
+  <line x1="192" y1="180" x2="224" y2="180" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="208" y="172" text-anchor="middle" class="xs">push</text>
+
+  <!-- CodePipeline -->
+  <rect x="420" y="100" width="780" height="176" rx="12" fill="#FFF5FA" stroke="#E7157B" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="436" y="121" class="lbl" fill="#B0105D">AWS CodePipeline</text>
+  <line x1="386" y1="180" x2="436" y2="180" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- stages -->
+  <g>
+    <rect x="440" y="134" width="160" height="110" rx="10" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.6"/>
+    <text x="520" y="160" text-anchor="middle" class="t">Source</text>
+    <text x="520" y="184" text-anchor="middle" class="s">Connexion GitHub</text>
+    <text x="520" y="202" text-anchor="middle" class="s">déclenchée à</text>
+    <text x="520" y="219" text-anchor="middle" class="s">chaque commit</text>
+  </g>
+  <g>
+    <rect x="630" y="134" width="170" height="110" rx="10" fill="#FFFFFF" stroke="#3F8624" stroke-width="1.6"/>
+    <rect x="630" y="134" width="170" height="24" rx="10" fill="#3F8624"/>
+    <rect x="630" y="148" width="170" height="10" fill="#3F8624"/>
+    <text x="715" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Build — DEV</text>
+    <text x="715" y="178" text-anchor="middle" class="s">AWS CodeBuild</text>
+    <text x="715" y="196" text-anchor="middle" class="xs">init → validate → plan</text>
+    <text x="715" y="212" text-anchor="middle" class="xs">→ apply (dev.tfvars)</text>
+    <text x="715" y="231" text-anchor="middle" class="xs">Terraform 0.15.3</text>
+  </g>
+  <g>
+    <rect x="830" y="134" width="150" height="110" rx="10" fill="#FFFFFF" stroke="#DD7A00" stroke-width="1.6"/>
+    <text x="905" y="160" text-anchor="middle" class="t">Approbation</text>
+    <text x="905" y="178" text-anchor="middle" class="t">manuelle</text>
+    <circle cx="905" cy="210" r="15" fill="none" stroke="#DD7A00" stroke-width="2.2"/>
+    <path d="M897,210 l6,6 l10,-12" fill="none" stroke="#DD7A00" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="1010" y="134" width="170" height="110" rx="10" fill="#FFFFFF" stroke="#3F8624" stroke-width="1.6"/>
+    <rect x="1010" y="134" width="170" height="24" rx="10" fill="#3F8624"/>
+    <rect x="1010" y="148" width="170" height="10" fill="#3F8624"/>
+    <text x="1095" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Build — STAG</text>
+    <text x="1095" y="178" text-anchor="middle" class="s">AWS CodeBuild</text>
+    <text x="1095" y="196" text-anchor="middle" class="xs">init → validate → plan</text>
+    <text x="1095" y="212" text-anchor="middle" class="xs">→ apply (stag.tfvars)</text>
+    <text x="1095" y="231" text-anchor="middle" class="xs">Terraform 0.15.3</text>
+  </g>
+  <line x1="600" y1="189" x2="626" y2="189" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="800" y1="189" x2="826" y2="189" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="980" y1="189" x2="1006" y2="189" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- SSM -->
+  <rect x="1236" y="100" width="306" height="64" rx="10" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.6"/>
+  <text x="1389" y="126" text-anchor="middle" class="t">SSM Parameter Store</text>
+  <text x="1389" y="147" text-anchor="middle" class="xs">/CodeBuild/MY_AWS_ACCESS_KEY_ID · SECRET_KEY</text>
+
+  <!-- S3 + DynamoDB -->
+  <rect x="1236" y="176" width="148" height="100" rx="10" fill="#FFFFFF" stroke="#3F8624" stroke-width="1.6"/>
+  <path d="M1290,192 h40 l-5,28 h-30 z" fill="#3F8624"/>
+  <text x="1310" y="240" text-anchor="middle" class="t">S3 Backend</text>
+  <text x="1310" y="258" text-anchor="middle" class="xs">tfstate dev / stag</text>
+  <rect x="1394" y="176" width="148" height="100" rx="10" fill="#FFFFFF" stroke="#2E27AD" stroke-width="1.6"/>
+  <ellipse cx="1468" cy="196" rx="18" ry="6" fill="#2E27AD"/>
+  <rect x="1450" y="196" width="36" height="20" fill="#2E27AD"/>
+  <ellipse cx="1468" cy="216" rx="18" ry="6" fill="#4D44D6"/>
+  <text x="1468" y="240" text-anchor="middle" class="t">DynamoDB</text>
+  <text x="1468" y="258" text-anchor="middle" class="xs">verrou de state</text>
+
+  <path d="M1180,160 C1205,150 1215,132 1232,132" fill="none" stroke="#7D8998" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrG)"/>
+  <path d="M1180,222 C1205,226 1215,226 1232,226" fill="none" stroke="#7D8998" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrG)"/>
+
+  <!-- apply arrows to AWS -->
+  <path d="M715,244 L715,300 L715,318" fill="none" stroke="#3F8624" stroke-width="2.4" marker-end="url(#arr)"/>
+  <path d="M1095,244 L1095,318" fill="none" stroke="#3F8624" stroke-width="2.4" marker-end="url(#arr)"/>
+  <text x="725" y="306" font-size="12" font-weight="700" fill="#3F8624">terraform apply → env dev</text>
+  <text x="1105" y="306" font-size="12" font-weight="700" fill="#3F8624">terraform apply → env stag</text>
+
+  <!-- ================= AWS PANEL ================= -->
+  <rect x="40" y="322" width="1520" height="738" rx="14" fill="#FFFFFF" stroke="#232F3E" stroke-width="2"/>
+  <rect x="40" y="322" width="190" height="30" rx="14" fill="#232F3E"/>
+  <rect x="40" y="338" width="190" height="14" fill="#232F3E"/>
+  <text x="58" y="343" font-size="14" font-weight="700" fill="#FF9900">② AWS Cloud</text>
+  <text x="160" y="343" font-size="12" fill="#fff">us-east-1</text>
+
+  <!-- Users -->
+  <rect x="56" y="380" width="196" height="70" rx="10" fill="#FFFFFF" stroke="#232F3E" stroke-width="1.6"/>
+  <circle cx="98" cy="405" r="9" fill="#232F3E"/><path d="M83,432 q15,-18 30,0" fill="#232F3E"/>
+  <circle cx="118" cy="405" r="9" fill="#5A6672"/><path d="M103,432 q15,-18 30,0" fill="#5A6672"/>
+  <text x="196" y="412" text-anchor="middle" class="t">Utilisateurs</text>
+  <text x="196" y="430" text-anchor="middle" class="xs">HTTPS</text>
+
+  <!-- Route 53 -->
+  <rect x="56" y="490" width="196" height="110" rx="10" fill="#FFFFFF" stroke="#8C4FFF" stroke-width="1.6"/>
+  <rect x="56" y="490" width="196" height="24" rx="10" fill="#8C4FFF"/>
+  <rect x="56" y="504" width="196" height="10" fill="#8C4FFF"/>
+  <text x="154" y="507" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Route 53</text>
+  <text x="154" y="534" text-anchor="middle" class="xs">Zone hébergée : devopsincloud.com</text>
+  <text x="154" y="554" text-anchor="middle" class="xs">Enregistrement A-alias → ALB</text>
+  <text x="154" y="572" text-anchor="middle" font-size="10.5" fill="#5A6672">dev : devdemo5.devopsincloud.com</text>
+  <text x="154" y="589" text-anchor="middle" font-size="10.5" fill="#5A6672">stag : stagedemo5.devopsincloud.com</text>
+
+  <!-- ACM -->
+  <rect x="56" y="640" width="196" height="90" rx="10" fill="#FFFFFF" stroke="#DD344C" stroke-width="1.6"/>
+  <rect x="56" y="640" width="196" height="24" rx="10" fill="#DD344C"/>
+  <rect x="56" y="654" width="196" height="10" fill="#DD344C"/>
+  <text x="154" y="657" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ACM</text>
+  <text x="154" y="686" text-anchor="middle" class="xs">Certificat SSL/TLS</text>
+  <text x="154" y="704" text-anchor="middle" class="xs">validé par DNS</text>
+  <text x="154" y="720" text-anchor="middle" class="xs">(Route 53)</text>
+
+  <line x1="154" y1="450" x2="154" y2="486" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="162" y="472" class="xs">résolution DNS</text>
+
+  <!-- ===== VPC ===== -->
+  <rect x="262" y="372" width="1050" height="670" rx="12" fill="#F8FBF5" stroke="#3F8624" stroke-width="2"/>
+  <text x="280" y="395" class="lbl" fill="#3F8624">VPC  10.0.0.0/16</text>
+  <text x="404" y="395" class="xs">(module terraform-aws-modules/vpc 3.0.0)</text>
+
+  <!-- IGW -->
+  <rect x="882" y="357" width="150" height="30" rx="8" fill="#8C4FFF"/>
+  <text x="957" y="377" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">Internet Gateway</text>
+
+  <!-- AZ columns -->
+  <g font-size="12" font-weight="700" fill="#147EBA">
+    <rect x="282" y="408" width="330" height="620" rx="10" fill="none" stroke="#147EBA" stroke-width="1.4" stroke-dasharray="7 5"/>
+    <text x="296" y="426">AZ  us-east-1a</text>
+    <rect x="622" y="408" width="330" height="620" rx="10" fill="none" stroke="#147EBA" stroke-width="1.4" stroke-dasharray="7 5"/>
+    <text x="636" y="426">AZ  us-east-1b</text>
+    <rect x="962" y="408" width="330" height="620" rx="10" fill="none" stroke="#147EBA" stroke-width="1.4" stroke-dasharray="7 5"/>
+    <text x="976" y="426">AZ  us-east-1c</text>
+  </g>
+
+  <!-- Public subnets -->
+  <g>
+    <rect x="294" y="436" width="306" height="196" rx="8" fill="#E9F3E1" stroke="#7AA116" stroke-width="1.3"/>
+    <text x="306" y="454" font-size="12" font-weight="700" fill="#4C7A0F">Public subnet · 10.0.101.0/24</text>
+    <rect x="634" y="436" width="306" height="196" rx="8" fill="#E9F3E1" stroke="#7AA116" stroke-width="1.3"/>
+    <text x="646" y="454" font-size="12" font-weight="700" fill="#4C7A0F">Public subnet · 10.0.102.0/24</text>
+    <rect x="974" y="436" width="306" height="196" rx="8" fill="#E9F3E1" stroke="#7AA116" stroke-width="1.3"/>
+    <text x="986" y="454" font-size="12" font-weight="700" fill="#4C7A0F">Public subnet · 10.0.103.0/24</text>
+  </g>
+
+  <!-- ALB band -->
+  <rect x="306" y="466" width="962" height="62" rx="10" fill="#FFFFFF" stroke="#8C4FFF" stroke-width="2"/>
+  <rect x="306" y="466" width="8" height="62" rx="3" fill="#8C4FFF"/>
+  <text x="326" y="490" class="t">Application Load Balancer</text>
+  <text x="326" y="512" class="xs">module alb 6.0.0 · SG : 80, 443, 81 depuis 0.0.0.0/0</text>
+  <text x="730" y="490" class="s">:80  HTTP → redirection 301 vers HTTPS</text>
+  <text x="730" y="512" class="s">:443 HTTPS (cert. ACM) → target group app1 · health check /app1/index.html</text>
+
+  <line x1="957" y1="387" x2="957" y2="462" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M252,545 C275,545 280,505 302,500" fill="none" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M252,684 C285,684 282,530 302,520" fill="none" stroke="#DD344C" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrO)"/>
+  <text x="270" y="640" font-size="11" fill="#DD344C" transform="rotate(-80 270 640)">certificat</text>
+
+  <!-- NAT + Bastion in AZ a -->
+  <rect x="302" y="546" width="118" height="74" rx="9" fill="#FFFFFF" stroke="#8C4FFF" stroke-width="1.6"/>
+  <text x="361" y="572" text-anchor="middle" class="t">NAT Gateway</text>
+  <text x="361" y="592" text-anchor="middle" class="xs">unique</text>
+  <text x="361" y="608" text-anchor="middle" class="xs">+ EIP</text>
+
+  <rect x="428" y="546" width="168" height="74" rx="9" fill="#FFFFFF" stroke="#ED7100" stroke-width="1.6"/>
+  <text x="512" y="566" text-anchor="middle" class="t">Bastion Host</text>
+  <text x="512" y="584" text-anchor="middle" class="xs">EC2 t3.micro + EIP</text>
+  <text x="512" y="600" text-anchor="middle" class="xs">SG : SSH 22 ouvert</text>
+  <text x="512" y="615" text-anchor="middle" class="xs">clé .pem via provisioner</text>
+
+  <text x="1160" y="610" class="xs">NAT &amp; bastion : AZ-a</text>
+
+  <!-- Private subnets -->
+  <g>
+    <rect x="294" y="650" width="306" height="230" rx="8" fill="#E6F0FA" stroke="#147EBA" stroke-width="1.3"/>
+    <text x="306" y="668" font-size="12" font-weight="700" fill="#0F5E8C">Private subnet · 10.0.1.0/24</text>
+    <rect x="634" y="650" width="306" height="230" rx="8" fill="#E6F0FA" stroke="#147EBA" stroke-width="1.3"/>
+    <text x="646" y="668" font-size="12" font-weight="700" fill="#0F5E8C">Private subnet · 10.0.2.0/24</text>
+    <rect x="974" y="650" width="306" height="230" rx="8" fill="#E6F0FA" stroke="#147EBA" stroke-width="1.3"/>
+    <text x="986" y="668" font-size="12" font-weight="700" fill="#0F5E8C">Private subnet · 10.0.3.0/24</text>
+  </g>
+
+  <!-- ASG band -->
+  <rect x="306" y="680" width="962" height="190" rx="10" fill="none" stroke="#ED7100" stroke-width="2" stroke-dasharray="9 5"/>
+  <rect x="318" y="861" width="476" height="18" fill="#E6F0FA"/>
+  <text x="324" y="875" font-size="13" font-weight="700" fill="#ED7100">Auto Scaling Group · min 2 / désiré 2 / max 10 · instance refresh rolling</text>
+
+  <g>
+    <rect x="356" y="712" width="206" height="104" rx="9" fill="#FFFFFF" stroke="#ED7100" stroke-width="1.6"/>
+    <rect x="696" y="712" width="206" height="104" rx="9" fill="#FFFFFF" stroke="#ED7100" stroke-width="1.6"/>
+    <rect x="1036" y="712" width="206" height="104" rx="9" fill="#FFFFFF" stroke="#ED7100" stroke-width="1.6" stroke-dasharray="5 3"/>
+    <text x="459" y="738" text-anchor="middle" class="t">EC2 · app1</text>
+    <text x="799" y="738" text-anchor="middle" class="t">EC2 · app1</text>
+    <text x="1139" y="738" text-anchor="middle" class="t">EC2 · app1 (si scale-out)</text>
+    <g class="xs" text-anchor="middle">
+      <text x="459" y="758">Amazon Linux 2 · t3.micro</text>
+      <text x="459" y="775">Apache httpd (user_data)</text>
+      <text x="459" y="792">EBS gp2 20 Go</text>
+      <text x="799" y="758">Amazon Linux 2 · t3.micro</text>
+      <text x="799" y="775">Apache httpd (user_data)</text>
+      <text x="799" y="792">EBS gp2 20 Go</text>
+      <text x="1139" y="758">Amazon Linux 2 · t3.micro</text>
+      <text x="1139" y="775">Apache httpd (user_data)</text>
+      <text x="1139" y="792">EBS gp2 20 Go</text>
+    </g>
+  </g>
+  <rect x="372" y="828" width="830" height="17" rx="4" fill="#E6F0FA"/><text x="787" y="840" text-anchor="middle" class="xs">Launch Template : AMI Amazon Linux 2 la plus récente · SG privé : 22, 80, 8080 depuis 10.0.0.0/16 · monitoring détaillé</text>
+
+  <!-- ALB -> EC2 -->
+  <line x1="459" y1="528" x2="459" y2="540" stroke="#232F3E" stroke-width="0"/>
+  <path d="M606,528 L606,725 Q606,740 566,740" fill="none" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="799" y1="528" x2="799" y2="708" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M1000,528 C1000,620 1120,640 1130,708" fill="none" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="808" y="620" class="xs">HTTP :80</text>
+
+  <!-- Bastion SSH -->
+  <path d="M520,620 L520,708" fill="none" stroke="#ED7100" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrO)"/>
+  <text x="527" y="690" font-size="11" fill="#ED7100">SSH</text>
+  <!-- outbound to NAT -->
+  <path d="M370,708 C350,680 345,650 360,624" fill="none" stroke="#7D8998" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrG)"/>
+  <text x="372" y="644" font-size="10.5" fill="#7D8998">sortie NAT</text>
+
+  <!-- DB subnets -->
+  <g>
+    <rect x="294" y="898" width="306" height="116" rx="8" fill="#ECEBFB" stroke="#2E27AD" stroke-width="1.3" stroke-dasharray="5 3"/>
+    <rect x="634" y="898" width="306" height="116" rx="8" fill="#ECEBFB" stroke="#2E27AD" stroke-width="1.3" stroke-dasharray="5 3"/>
+    <rect x="974" y="898" width="306" height="116" rx="8" fill="#ECEBFB" stroke="#2E27AD" stroke-width="1.3" stroke-dasharray="5 3"/>
+    <g font-size="12" font-weight="700" fill="#2E27AD">
+      <text x="306" y="916">Database subnet · 10.0.151.0/24</text>
+      <text x="646" y="916">Database subnet · 10.0.152.0/24</text>
+      <text x="986" y="916">Database subnet · 10.0.153.0/24</text>
+    </g>
+    <g class="xs" text-anchor="middle">
+      <text x="447" y="960">DB subnet group + route table</text>
+      <text x="447" y="978">(réservé — aucune base déployée)</text>
+      <text x="787" y="960">DB subnet group + route table</text>
+      <text x="787" y="978">(réservé — aucune base déployée)</text>
+      <text x="1127" y="960">DB subnet group + route table</text>
+      <text x="1127" y="978">(réservé — aucune base déployée)</text>
+    </g>
+  </g>
+
+  <!-- ===== Right column ===== -->
+  <!-- CloudWatch scaling -->
+  <rect x="1334" y="380" width="208" height="296" rx="10" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.6"/>
+  <rect x="1334" y="380" width="208" height="24" rx="10" fill="#E7157B"/>
+  <rect x="1334" y="394" width="208" height="10" fill="#E7157B"/>
+  <text x="1438" y="397" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">CloudWatch · Scaling</text>
+  <g class="xs">
+    <text x="1348" y="428" font-weight="700" fill="#232F3E">Target tracking</text>
+    <text x="1348" y="446">• CPU moyen ASG = 50 %</text>
+    <text x="1348" y="463">  (warmup 180 s)</text>
+    <text x="1348" y="482">• Requêtes ALB / cible = 10</text>
+    <text x="1348" y="499">  (warmup 120 s)</text>
+    <text x="1348" y="530" font-weight="700" fill="#232F3E">Actions planifiées (UTC)</text>
+    <text x="1348" y="548">• 09:00 → désiré 8</text>
+    <text x="1348" y="565">• 21:00 → désiré 2</text>
+    <text x="1348" y="596" font-weight="700" fill="#232F3E">Instance refresh</text>
+    <text x="1348" y="614">• Rolling, min 50 % sain</text>
+    <text x="1348" y="631">• déclencheur :</text>
+    <text x="1348" y="648">  desired_capacity / LT</text>
+  </g>
+  <path d="M1330,760 C1300,760 1290,770 1272,770" fill="none" stroke="#E7157B" stroke-width="1.8" marker-end="url(#arrO)"/>
+  <line x1="1438" y1="676" x2="1438" y2="740" stroke="#E7157B" stroke-width="1.8"/>
+  <line x1="1438" y1="740" x2="1438" y2="760" stroke="#E7157B" stroke-width="1.8"/>
+  <line x1="1438" y1="760" x2="1330" y2="760" stroke="#E7157B" stroke-width="1.8"/>
+
+  <!-- SNS -->
+  <rect x="1334" y="800" width="208" height="84" rx="10" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.6"/>
+  <rect x="1334" y="800" width="208" height="24" rx="10" fill="#E7157B"/>
+  <rect x="1334" y="814" width="208" height="10" fill="#E7157B"/>
+  <text x="1438" y="817" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Amazon SNS</text>
+  <text x="1438" y="846" text-anchor="middle" class="xs">LAUNCH / TERMINATE</text>
+  <text x="1438" y="864" text-anchor="middle" class="xs">(+ erreurs) de l'ASG</text>
+  <path d="M1268,820 C1300,820 1305,840 1330,840" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <rect x="1334" y="920" width="208" height="56" rx="10" fill="#FFFFFF" stroke="#232F3E" stroke-width="1.6"/>
+  <rect x="1352" y="936" width="34" height="24" rx="3" fill="none" stroke="#232F3E" stroke-width="1.8"/>
+  <path d="M1352,936 l17,13 l17,-13" fill="none" stroke="#232F3E" stroke-width="1.8"/>
+  <text x="1398" y="954" class="t">Abonné e-mail</text>
+  <line x1="1438" y1="884" x2="1438" y2="916" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- Legend -->
+  <g transform="translate(62,770)">
+    <text x="0" y="0" font-size="12" font-weight="700" fill="#232F3E">Légende</text>
+    <line x1="0" y1="20" x2="40" y2="20" stroke="#232F3E" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="48" y="24" class="xs">trafic / flux</text>
+    <line x1="0" y1="44" x2="40" y2="44" stroke="#7D8998" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrG)"/>
+    <text x="48" y="48" class="xs">state / sortie NAT</text>
+    <line x1="0" y1="68" x2="40" y2="68" stroke="#ED7100" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrO)"/>
+    <text x="48" y="72" class="xs">admin SSH</text>
+    <rect x="0" y="86" width="40" height="18" rx="4" fill="none" stroke="#147EBA" stroke-dasharray="6 4"/>
+    <text x="48" y="99" class="xs">zone de dispo.</text>
+    <text x="0" y="130" class="xs">Nommage : &lt;business_division&gt;-</text>
+    <text x="0" y="146" class="xs">&lt;environment&gt; (ex. hr-dev)</text>
+    <text x="0" y="170" class="xs">1 VPC complet par env.</text>
+    <text x="0" y="186" class="xs">(state S3 séparé)</text>
+  </g>
+</svg>
