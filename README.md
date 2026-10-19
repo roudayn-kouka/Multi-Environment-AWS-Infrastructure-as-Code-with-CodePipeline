@@ -30,7 +30,7 @@ Chaque `git push` déclenche le pipeline : Terraform est exécuté sur l'environ
 
 ## Architecture
 
-![Architecture](architecture.png)
+![Architecture](architecture-terraform-dark.gif)
 
 **Flux applicatif :**
 `Utilisateur → Route 53 (devdemo5 / stagedemo5.devopsincloud.com) → ALB (HTTPS, certificat ACM) → Target Group → instances EC2 de l'Auto Scaling Group (subnets privés)`
